@@ -122,12 +122,14 @@ class Modal extends HTMLElement {
 
   #cancel(event) {
     this.hide();
-    const cancelEvent = new Event('cancel');
+    const cancelEvent = new Event('cancel', { bubbles: true, composed: true });
     event.target.dispatchEvent(cancelEvent);
   }
 
   #confirm() {
     this.hide();
+    const confirmEvent = new Event('confirm');
+    this.dispatchEvent(confirmEvent);
   }
 }
 customElements.define('uc-modal', Modal);
